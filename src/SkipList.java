@@ -1,17 +1,19 @@
+package SkipList;
+
 import java.util.Random;
 
-class SkipList<Key extends Comparable<Key>, Value> {
+public class SkipList<Key extends Comparable<Key>, Value> {
     private final static int MAX_HEIGHT = 5;
     private Node head;
     private Node tail;
     private Random RNG = new Random(0);
-    SkipList() {
+    public SkipList() {
         head = new Node(null, null, 0);
         tail = new Node(null, null, 0);
         head.setRight(tail);
     }
 
-    void put(Key key, Value value) {
+    public void put(Key key, Value value) {
         final int height = determineHeight();
         final Node newNode = new Node(key, value, height);
         if (height > head.getHeight()) {
@@ -30,7 +32,7 @@ class SkipList<Key extends Comparable<Key>, Value> {
         current.insert(newNode);
     }
 
-    Value remove(Key key) {
+    public Value remove(Key key) {
         final Node toBeRemoved = head.get(key);
         if (toBeRemoved == null) {
             System.out.println("Error: Node not Found");
@@ -41,7 +43,7 @@ class SkipList<Key extends Comparable<Key>, Value> {
         }
     }
 
-    Value get(final Key key) {
+    public Value get(final Key key) {
         final Node n = head.get(key);
         if (n == null) {
             System.out.println("Error: Node not Found");
